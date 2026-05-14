@@ -39,7 +39,7 @@
         </div>
     </header>
 
-    <section class="products">
+    <section class="products hidden">
         <h2>Featured Products</h2>
         <div class="product-container">
             <div class="product-card">
@@ -68,7 +68,7 @@
         </div>
     </section>
 
-    <section class="benefits">
+    <section class="benefits hidden">
         <h2>Why Choose ZayaBloom?</h2>
         <div class="benefit-items">
             <div>Vegan Ingredients</div>
@@ -78,10 +78,10 @@
         </div>
     </section>
 
-    <section class="testimonial-slider">
+    <section class="testimonial-slider hidden">
         <h2>What Customers Say</h2>
 
-        <div class="testimonial">
+        <div class="testimonial active">
             <p><i>"ZayaBloom completely changed my skincare routine. My skin feels healthier than ever"</i></p>
             <h4>-Elizabeth, Lagos</h4>
         </div>
@@ -115,7 +115,7 @@
         </div>
         <p>&copy; 2026 ZayaBloom Skincare. All Rights Reserved.</p>
     </footer>
-    <script src="./script.js">
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             const menuToggle = document.getElementById("menu-toggle");
             const navLinks = document.querySelector(".nav-links");
@@ -124,6 +124,37 @@
             navLinks.classList.toggle("active");
         });
         });
+        
+        const hiddenElements = document.querySelectorAll(".hidden");
+
+window.addEventListener("scroll", () => {
+
+  hiddenElements.forEach(el => {
+
+    const elementTop = el.getBoundingClientRect().top;
+
+    if(elementTop < window.innerHeight - 100){
+      el.classList.add("show");
+    }
+
+  });
+
+});
+
+        const testimonials = document.querySelectorAll(".testimonial");
+        let currentTestimonial = 0;
+        function showTestimonial(){
+              testimonials.forEach(testimonial => {
+         testimonial.classList.remove("active");
+        });
+        testimonials[currentTestimonial].classList.add("active");
+        currentTestimonial++;
+        if(currentTestimonial >= testimonials.length){
+            currentTestimonial = 0;
+        }
+    }
+    showTestimonial();
+    setInterval(showTestimonial, 4000);
     </script>
 </body>
 </html>
